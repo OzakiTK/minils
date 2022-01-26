@@ -1,15 +1,14 @@
 name: CI
-on:
-  push: # リモートリポジトリのコードが push された時にこのワークフローを実行する
+on: [push]
 jobs: 
   build: 
     runs-on: ubuntu-latest
-    steps: 
+  steps: 
     - uses: actions/checkout@v2 # CI 環境にリモートリポジトリのコードをチェックアウトする
     - name: Set up Go
-    uses: actions/setup-go@v2 # CI 環境に Go の環境をセットアップする
-    with: 
-      go-version: 1.16
+      uses: actions/setup-go@v2 # CI 環境に Go の環境をセットアップする
+      with: 
+        go-version: 1.16
     - name: Build # アプリケーションのビルドを実行する
       run: go build -v ./...
     - name: Test # アプリケーションのテストを実行する
